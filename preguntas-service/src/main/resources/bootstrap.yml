@@ -7,15 +7,14 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8081
+      uri: http://localhost:8081/
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/preguntas?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: postgres
+    password: vdcv1408
   jpa:
     show-sql: true
     hibernate:
-      dialect: p
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: create
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    dbname: pruebas
-    url: jdbc:mysql://localhost:3306/pruebas?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
-    username: postgres
-    password: vdcv1408
