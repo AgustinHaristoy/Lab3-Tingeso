@@ -15,4 +15,16 @@ public class PreguntasService {
     public List<PreguntasEntity> getAllPreguntas() {
         return preguntasRepository.findAll();
     }
+
+    public boolean idAlreadyExists(Long id) {
+        return preguntasRepository.existsById(id);
+    }
+
+    public List<PreguntasEntity> getPreguntasByDificultad(String dificultad) {
+        return preguntasRepository.findByDificultad(dificultad);
+    }
+
+    public PreguntasEntity guardarPregunta(PreguntasEntity pregunta) {
+        return preguntasRepository.save(pregunta);
+    }
 }

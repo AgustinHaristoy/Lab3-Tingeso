@@ -4,9 +4,7 @@ import cl.usach.preguntasservice.entities.PreguntasEntity;
 import cl.usach.preguntasservice.services.PreguntasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,22 @@ public class PreguntasController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(preguntas);
+    }
+
+    @GetMapping("/{dificultad}")
+    public ResponseEntity<List<PreguntasEntity>> getPreguntasByDificultad(@PathVariable String dificultad) {
+        List<PreguntasEntity> preguntas = preguntasService.getPreguntasByDificultad(dificultad);
+        if(preguntas.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(preguntas);
+    }
+
+    @PostMapping
+    public ResponseEntity<PreguntasEntity> guardarPregunta(@RequestBody PreguntasEntity pregunta) {
+        if(preguntasService.idAlreadyExists(pregunta.getId()))
+            return ResponseEntity.badRequest().build();
+        preguntasService.guardarPregunta(pregunta);
+        return ResponseEntity.ok(pregunta);
     }
 }
