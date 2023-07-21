@@ -1,0 +1,21 @@
+spring:
+  devtools:
+    restart:
+      aditional-paths: src/main/java
+  application:
+    name: preguntas-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: p
+      ddl-auto: create
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbname: pruebas
+    url: jdbc:mysql://localhost:3306/pruebas?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: postgres
+    password: vdcv1408
