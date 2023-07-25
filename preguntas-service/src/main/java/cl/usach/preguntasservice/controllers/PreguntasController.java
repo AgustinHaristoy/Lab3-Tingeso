@@ -38,4 +38,13 @@ public class PreguntasController {
         preguntasService.guardarPregunta(pregunta);
         return ResponseEntity.ok(pregunta);
     }
+
+    @GetMapping("/aleatorias/{dificultad}")
+    public ResponseEntity<List<PreguntasEntity>> getPreguntasAleatorias(@PathVariable String dificultad) {
+        List<PreguntasEntity> preguntas = preguntasService.getPreguntasAleatorias(dificultad);
+        if(preguntas.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(preguntas);
+    }
 }
